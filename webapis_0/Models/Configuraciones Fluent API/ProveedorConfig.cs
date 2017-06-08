@@ -32,6 +32,10 @@ namespace webapis_0.Models.Configuraciones_Fluent_API
                 .IsUnicode()
                 .HasMaxLength(80)
                 .IsOptional();
+            Property(_prov => _prov.Telefono2)
+                .IsUnicode()
+                .HasMaxLength(10)
+                .IsOptional();
 
             HasMany(_prov => _prov.Facturas)
                 .WithRequired(_fac => _fac.Proveedor)
