@@ -104,6 +104,7 @@
     <Compile Include="Models\Entity Framework CF\Linea_Factura.cs" />
     <Compile Include="Models\Entity Framework CF\Proveedor.cs" />
     <Compile Include="Models\Entity Framework CF\webapis_contexto.cs" />
+    <Compile Include="Models\Inicializadores EF\InicializadorDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

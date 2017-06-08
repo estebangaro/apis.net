@@ -10,7 +10,7 @@ namespace webapis_0.Models.Entity_Framework_CF
         // Code First Convention - PK
         public int ProveedorId { get; set; }
         public string Nombre { get; set; }
-        public DateTime Registro { get; set; }
+        public Nullable<DateTime> Registro { get; set; }
         public string Contacto { get; set; }
         public string Telefono { get; set; }
         public string Direccion { get; set; }
