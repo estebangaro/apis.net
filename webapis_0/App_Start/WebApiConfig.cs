@@ -19,6 +19,11 @@ namespace webapis_0
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "AccionNombreApi",
+                routeTemplate: "api/{controller}/{action}/{valor}"
+            );
         }
     }
 }
