@@ -99,6 +99,23 @@ namespace webapis_0.Controllers
                 ToList();
         }
 
+        // api/proveedores/EliminarProveedor/{valor} = x HTTP DELETE
+        [HttpDelete]
+        public HttpResponseMessage EliminarProveedor(int valor)
+        {
+            Proveedor _aEliminar = _dbContexto.Proveedores.
+                FirstOrDefault(_prov => _prov.ProveedorId == valor);
+            HttpResponseMessage _respuesta;
+
+            if (_aEliminar != null)
+                _respuesta = Request.CreateResponse(HttpStatusCode.OK,
+                    string.Format($"El proveedor {_aEliminar.Nombre} está listo para ser eliminado"));
+            else
+                _respuesta = Request.CreateResponse(HttpStatusCode.NoContent);
+
+            return _respuesta;
+        }
+
         #endregion
 
         #region Enrutamiento basado en atributos de enrutamiento
@@ -124,15 +141,109 @@ namespace webapis_0.Controllers
             return _facura;
         }
 
+        // Patrón de definición de URIs => "Jerarquía de Recursos".
+        [Route("proveedores/{clave}/facturas", Name = "ListaFacturasProveedor")]
+        [HttpGet]
+        public List<Factura> ObtenFacturasProveedor(int clave)
+        {
+            // Se asume un valor de clave válido.
+            List<Factura> _lista = _dbContexto.Proveedores.Include(_prov => _prov.Facturas.
+            Select(_fact => _fact.Detalle)).
+                FirstOrDefault(_prov => _prov.ProveedorId == clave).Facturas.ToList();
+            _lista.ForEach(_fact =>
+            {
+                _fact.Proveedor = null;
+                _fact.Detalle.ToList().ForEach(_item => _item.Factura = null);
+            });
+
+            return _lista;
+        }
+
+        // Patrón de definición de URIs => "Múltiples versiones de Controladores".
+        [Route("proveedorV1/ObtenProveedorMayor")]
+        [HttpGet]
+        public HttpResponseMessage ObtenProveedorMayor()
+        {
+            Proveedor _consulta = _dbContexto.Proveedores.
+                OrderByDescending(_prov => _prov.Nombre.Length).
+                FirstOrDefault();
+            HttpResponseMessage _respuesta;
+
+            if (_consulta != null)
+            {
+                _respuesta = Request.CreateResponse(HttpStatusCode.OK, _consulta);
+                _respuesta.Headers.Location = new Uri(Url.Link("ListaFacturasProveedor",
+                    new { clave = _consulta.ProveedorId }));
+            }
+            else
+                _respuesta = Request.CreateErrorResponse(HttpStatusCode.NoContent, "No existe el proveedor con la clave proporcionada");
+
+            return _respuesta;
+        }
+
+        // Patrón de definición de URIs => "Sobrecarga de Segmentos de URI". (1)
+        [Route("api/facturas/all")]
+        [HttpGet]
+        public ICollection<Factura> ObtenFacturas()
+        {
+            List<Factura> _facturas = _dbContexto.Facturas.ToList();
+            _facturas.ForEach(_fact =>
+            {
+                _fact.Proveedor = null;
+                _fact.Detalle = null;
+            });
+
+            return _facturas;
+        }
+
+        // Patrón de definición de URIs => "Sobrecarga de Segmentos de URI". (2)
+        [Route("api/facturas/{clave}")]
+        [HttpGet]
+        public Factura ObtenFacturas(int clave)
+        {
+            Factura _facturas = _dbContexto.Facturas.FirstOrDefault(_fact => _fact.NumeroFactura == clave);
+            if (_facturas != null)
+                _facturas.Proveedor = null;
+
+            return _facturas;
+        }
+
+
         #endregion
 
         #region Restricciones de Rutas
+
+        [Route("api/proveedores/consulta/{noClave:int}")]
+        public Proveedor GetProveedorPorClave(int noClave)
+        {
+            return _dbContexto.Proveedores.
+                FirstOrDefault(_prov => _prov.ProveedorId == noClave);
+        }
+
+        [Route("api/proveedores/consulta/{nombreProv:alpha}")]
+        public Proveedor GetProveedorPorNombre(string nombreProv)
+        {
+            return _dbContexto.Proveedores.
+                FirstOrDefault(_prov => _prov.Nombre == nombreProv);
+        }
+
         #endregion
 
-        #region Restricciones Personalizadas
+        #region Restricciones Personalizadas de Rutas
+
+        [Route("api/proveedores/{email:restriccionDominio}")]
+        [HttpGet]
+        public Proveedor ObtenProveedorPorEmail(string email)
+        {
+            return _dbContexto.Proveedores.FirstOrDefault(_prov => _prov.Direccion.Contains(email));
+        }
+
         #endregion
 
         #region Nombres de Rutas
+
+
+
         #endregion
 
         #region Orden de Rutas
