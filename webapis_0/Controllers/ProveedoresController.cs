@@ -9,6 +9,7 @@ using System.Data.Entity;
 
 namespace webapis_0.Controllers
 {
+    [RoutePrefix("apiP")]
     public class ProveedoresController : ApiController
     {
         private webapis_contexto _dbContexto;
@@ -141,24 +142,6 @@ namespace webapis_0.Controllers
             return _facura;
         }
 
-        // Patrón de definición de URIs => "Jerarquía de Recursos".
-        [Route("proveedores/{clave}/facturas", Name = "ListaFacturasProveedor")]
-        [HttpGet]
-        public List<Factura> ObtenFacturasProveedor(int clave)
-        {
-            // Se asume un valor de clave válido.
-            List<Factura> _lista = _dbContexto.Proveedores.Include(_prov => _prov.Facturas.
-            Select(_fact => _fact.Detalle)).
-                FirstOrDefault(_prov => _prov.ProveedorId == clave).Facturas.ToList();
-            _lista.ForEach(_fact =>
-            {
-                _fact.Proveedor = null;
-                _fact.Detalle.ToList().ForEach(_item => _item.Factura = null);
-            });
-
-            return _lista;
-        }
-
         // Patrón de definición de URIs => "Múltiples versiones de Controladores".
         [Route("proveedorV1/ObtenProveedorMayor")]
         [HttpGet]
@@ -242,15 +225,102 @@ namespace webapis_0.Controllers
 
         #region Nombres de Rutas
 
+        // Patrón de definición de URIs => "Jerarquía de Recursos".
+        [Route("proveedores/{clave}/facturas", Name = "ListaFacturasProveedor")]
+        [HttpGet]
+        public List<Factura> ObtenFacturasProveedor(int clave)
+        {
+            // Se asume un valor de clave válido.
+            List<Factura> _lista = _dbContexto.Proveedores.Include(_prov => _prov.Facturas.
+            Select(_fact => _fact.Detalle)).
+                FirstOrDefault(_prov => _prov.ProveedorId == clave).Facturas.ToList();
+            _lista.ForEach(_fact =>
+            {
+                _fact.Proveedor = null;
+                _fact.Detalle.ToList().ForEach(_item => _item.Factura = null);
+            });
 
+            return _lista;
+        }
 
         #endregion
 
         #region Orden de Rutas
+
+        [Route("api/proveedorV3/obtener")] // 1
+        public List<Factura> GetFacturaPorIdProveedor()
+        {
+            throw new NotImplementedException();
+        }
+
+        [Route("api/proveedorV3/obtener/{numero:int:range(2,25)}", Order = 1)] // 2
+        public List<Linea_Factura> GetDetallePorNumeroFactura(int numero)
+        {
+            throw new NotImplementedException();
+        }
+
+        [Route("api/proveedorV3/obtener/{id}", Order = 0)] // 4
+        public List<Factura> ObtenFacturaPorIdProveedor2(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [Route("products/{discontinued}")] // 5
+        public List<Factura> GetFacturaPorIdProveedor3(int discontinued)
+        {
+            throw new NotImplementedException();
+        }
+
+        [Route("products/{all}")] // 3
+        public Proveedor GetProveedoPorId(int all)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+
+        #region Prefijos de Ruta
+
+        [Route("prov/{numeroProveedor}")]
+        public Proveedor GetProv(int numeroProveedor)
+        {
+            return _dbContexto.Proveedores.FirstOrDefault(_p => _p.ProveedorId == numeroProveedor);
+        }
+
+        [Route("prov/{noProveedor}/{noFactura}")]
+        public Factura GetFactura(int noProveedor, int noFactura)
+        {
+            Factura _consultada = _dbContexto.Facturas.
+                FirstOrDefault(_f => _f.NumeroFactura == noFactura && _f.ProveedorId == noProveedor);
+            _consultada.Proveedor = null;
+
+            return _consultada;
+        }
+
+        [Route("~/prov/obtener/primero")]
+        [HttpGet]
+        public Proveedor ObtenProvPrimero()
+        {
+            return _dbContexto.Proveedores.FirstOrDefault();
+        }
+
         #endregion
 
         #region Parametros Opcionales de URIs y valores predeterminados
-        #endregion
 
+        [Route("~/prov/obtener/provs/{id?}")]
+        public IEnumerable<Proveedor> GetProvs(string id = "")
+        {
+            return _dbContexto.Proveedores.ToArray();
+        }
+
+        [Route("~/prov/obtener/provs2/{id:int:range(1,10)=2}")]
+        public IEnumerable<Proveedor> GetProvs2(int id)
+        {
+            return _dbContexto.Proveedores.ToArray();
+        }
+
+        #endregion
     }
 }
