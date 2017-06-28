@@ -8,7 +8,7 @@ using webapis_0.Models.Entity_Framework_CF;
 
 namespace webapis_0.Models.Inicializadores_EF
 {
-    public class InicializadorDbContext: CreateDatabaseIfNotExists<webapis_contexto>
+    public class InicializadorDbContext: DropCreateDatabaseIfModelChanges<webapis_contexto>
     {
         protected override void Seed(webapis_contexto context)
         {
@@ -32,10 +32,25 @@ namespace webapis_0.Models.Inicializadores_EF
                 ,new Linea_Factura{ Total = 100, Cantidad = 2, PrecioUnitario = 50, ITEM = 4, Factura = _facturas[0], Descripcion ="Separador", Unidad="PZ"}
                 ,new Linea_Factura{ Total = 100, Cantidad = 1, PrecioUnitario = 100, ITEM = 5, Factura = _facturas[0], Descripcion ="Estampa", Unidad="PZ"}
             };
+                Equipo _nuevo = new Equipo
+                {
+                    Apodo = "La máquina celeste",
+                    CampeonatosLiga = 8,
+                    Fundacion = new DateTime(1965, 08, 23),
+                    Nombre = "Cruz Azul FC"
+                };
+                List<Jugador> _jugadores = new List<Jugador>
+                {
+                    new Jugador{ Equipo_Actual = _nuevo, Nacimiento = DateTime.Today, Nombre = "Cristian Gimenez", Posicion = POSICION_SOCCER.Delantero},
+                    new Jugador{ Equipo_Actual = _nuevo, Nacimiento = DateTime.Today, Nombre = "Jesus Corona", Posicion = POSICION_SOCCER.Portero},
+                    new Jugador{ Equipo_Actual = _nuevo, Nacimiento = DateTime.Today, Nombre = "Catita Dominguez", Posicion = POSICION_SOCCER.Defensa}
+                };
 
                 context.Proveedores.AddRange(_proveedores);
                 context.Facturas.AddRange(_facturas);
                 context.Items.AddRange(_lineas);
+                context.Equipos.Add(_nuevo);
+                context.Jugadores.AddRange(_jugadores);
 
                 context.SaveChanges();
             }

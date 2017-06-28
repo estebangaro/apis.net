@@ -93,15 +93,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\EquiposController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\ProveedorV2TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Configuraciones Fluent API\EquipoConfig.cs" />
     <Compile Include="Models\Configuraciones Fluent API\FacturaConfig.cs" />
+    <Compile Include="Models\Configuraciones Fluent API\JugadorConfig.cs" />
     <Compile Include="Models\Configuraciones Fluent API\Linea_FacturaConfig.cs" />
     <Compile Include="Models\Configuraciones Fluent API\ProveedorConfig.cs" />
+    <Compile Include="Models\Entity Framework CF\Equipo.cs" />
     <Compile Include="Models\Entity Framework CF\Factura.cs" />
+    <Compile Include="Models\Entity Framework CF\Jugador.cs" />
     <Compile Include="Models\Entity Framework CF\Linea_Factura.cs" />
     <Compile Include="Models\Entity Framework CF\Proveedor.cs" />
     <Compile Include="Models\Entity Framework CF\webapis_contexto.cs" />
