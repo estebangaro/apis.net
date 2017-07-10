@@ -84,6 +84,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Views\Principal.aspx" />
+    <Content Include="Views\RegistraEquipo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +99,13 @@
     </Compile>
     <Compile Include="Views\Principal.aspx.designer.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegistraEquipo.aspx.cs">
+      <DependentUpon>RegistraEquipo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RegistraEquipo.aspx.designer.cs">
+      <DependentUpon>RegistraEquipo.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebAPICliente.cs" />
   </ItemGroup>

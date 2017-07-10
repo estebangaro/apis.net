@@ -50,5 +50,28 @@ namespace WebFormsCliente
             return equipos;
         }
 
+        public async Task<Equipo> PostEquipoAsync(Equipo nuevo)
+        {
+            Equipo equipo;
+            using (HttpClient clienteHTTP = new HttpClient(manejador))
+            {
+                try
+                {
+                    clienteHTTP.BaseAddress = new Uri(DireccionBase);
+                    clienteHTTP.DefaultRequestHeaders.Accept.Clear();
+                    clienteHTTP.DefaultRequestHeaders.Accept.Add(
+                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                    var respuestaHTTP = await clienteHTTP.PostAsJsonAsync(URI, nuevo);
+                    respuestaHTTP.EnsureSuccessStatusCode();
+                    equipo = await respuestaHTTP.Content.ReadAsAsync<Equipo>();
+                }
+                catch
+                {
+                    equipo = null;
+                }
+            }
+            return equipo;
+        }
+
     }
 }

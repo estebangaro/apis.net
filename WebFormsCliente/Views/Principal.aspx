@@ -12,10 +12,11 @@
     <form id="form1" runat="server">
         <div>
             <asp:Button runat="server" ID="btn_GetEquiposAsync" Text="Obtener Lista Equipos" OnClick="btn_GetEquiposAsync_Click"/>
-        </div>
+        </div>        
         <div>
-            <asp:PlaceHolder runat="server" ID="marcadoListaEquipos"></asp:PlaceHolder>
+            <asp:Button runat="server" ID="btn_RegistrarEquipo" Text="Registrar equipo" OnClick="btn_RegistrarEquipo_Click"/>
         </div>
+        <div id="marcadoListaEqipos" runat="server"></div>
     </form>
 </body>
 </html>

@@ -31,12 +31,21 @@ namespace WebFormsCliente.Views {
         protected global::System.Web.UI.WebControls.Button btn_GetEquiposAsync;
         
         /// <summary>
-        /// Control marcadoListaEquipos.
+        /// Control btn_RegistrarEquipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder marcadoListaEquipos;
+        protected global::System.Web.UI.WebControls.Button btn_RegistrarEquipo;
+        
+        /// <summary>
+        /// Control marcadoListaEqipos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl marcadoListaEqipos;
     }
 }

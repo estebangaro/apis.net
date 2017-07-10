@@ -36,6 +36,7 @@ namespace webapis_0.Controllers
             try
             {
                 _dbContexto.Equipos.Add(nuevo);
+                _dbContexto.SaveChanges();
                 _registro = Request.CreateResponse(HttpStatusCode.OK, nuevo);
                 // _registro.Headers.Location = new Uri(route)
             }
