@@ -12,13 +12,17 @@
         public virtual DbSet<Proveedor> Proveedores { get; set; }
         public virtual DbSet<Factura> Facturas { get; set; }
         public virtual DbSet<Linea_Factura> Items { get; set; }
+        public virtual DbSet<Equipo> Equipos { get; set; }
+        public virtual DbSet<Jugador> Jugadores { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.
                 Add(new webapis_0.Models.Configuraciones_Fluent_API.ProveedorConfig())
                 .Add(new webapis_0.Models.Configuraciones_Fluent_API.FacturaConfig())
-                .Add(new webapis_0.Models.Configuraciones_Fluent_API.Linea_FacturaConfig());
+                .Add(new webapis_0.Models.Configuraciones_Fluent_API.Linea_FacturaConfig())
+                .Add(new webapis_0.Models.Configuraciones_Fluent_API.EquipoConfig())
+                .Add(new webapis_0.Models.Configuraciones_Fluent_API.JugadorConfig());
         }
     }
 }
