@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using System.Web;
+using webapis_0.Models;
 
 namespace WebFormsCliente
 {
@@ -60,12 +62,14 @@ namespace WebFormsCliente
                     clienteHTTP.BaseAddress = new Uri(DireccionBase);
                     clienteHTTP.DefaultRequestHeaders.Accept.Clear();
                     clienteHTTP.DefaultRequestHeaders.Accept.Add(
-                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                    var respuestaHTTP = await clienteHTTP.PostAsJsonAsync(URI, nuevo);
+                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("text/pipe"));
+                    var respuestaHTTP = await clienteHTTP.PostAsync(URI, nuevo, new PipeMediaTypeFormatter());
                     respuestaHTTP.EnsureSuccessStatusCode();
-                    equipo = await respuestaHTTP.Content.ReadAsAsync<Equipo>();
+                    equipo = await respuestaHTTP.Content.ReadAsAsync<Equipo>(new List<MediaTypeFormatter> {
+                        new PipeMediaTypeFormatter()
+                    });
                 }
-                catch
+                catch(Exception ex)
                 {
                     equipo = null;
                 }

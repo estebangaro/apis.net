@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
 using System.Web.Http;
 using System.Web.Http.Routing;
 
@@ -27,6 +28,8 @@ namespace webapis_0
                 name: "AccionNombreApi",
                 routeTemplate: "api/{controller}/{action}/{valor}"
             );
+
+            config.Formatters.Add(new Models.PipeMediaTypeFormatter());
         }
     }
 }
