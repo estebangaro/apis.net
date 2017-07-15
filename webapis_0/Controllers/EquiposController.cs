@@ -29,6 +29,15 @@ namespace webapis_0.Controllers
             return _equiposConsulta;
         }
 
+        // http://192.168.0.13:2412/api/equipos/{id} GET
+        public Models.Entity_Framework_CF.Equipo GetEquipo(string id)
+        {
+            Equipo _equipoConsulta = _dbContexto.Equipos.Where(e => e.Nombre == id).FirstOrDefault();
+            //_equiposConsulta.ForEach(_equipo => _equipo.Jugadores = null);
+
+            return _equipoConsulta;
+        }
+
         // http://192.168.0.13:2412/api/equipos/ POST
         public HttpResponseMessage PostEquipo(Equipo nuevo)
         {
