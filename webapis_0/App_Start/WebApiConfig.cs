@@ -30,6 +30,7 @@ namespace webapis_0
             );
 
             config.Formatters.Add(new Models.PipeMediaTypeFormatter());
+            config.Formatters.Add(new Models.XMLFormateador());
         }
     }
 }

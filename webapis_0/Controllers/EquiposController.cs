@@ -47,7 +47,7 @@ namespace webapis_0.Controllers
                 _dbContexto.Equipos.Add(nuevo);
                 _dbContexto.SaveChanges();
                 _registro = Request.CreateResponse(HttpStatusCode.OK, nuevo);
-                // _registro.Headers.Location = new Uri(route)
+                _registro.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = nuevo.Nombre }));
             }
             catch
             {
@@ -55,6 +55,47 @@ namespace webapis_0.Controllers
             }
 
             return _registro;
+        }
+
+        // http://192.168.0.13:2412/api/equipos/ PUT
+        public HttpResponseMessage PutEquipo(Equipo actualizado)
+        {
+            _dbContexto.Configuration.ProxyCreationEnabled = true;
+            HttpResponseMessage _registro;
+            try
+            {
+                _dbContexto.Entry(actualizado).State = System.Data.Entity.EntityState.Modified;
+                _dbContexto.SaveChanges();
+                _registro = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch
+            {
+                _registro = Request.CreateResponse(HttpStatusCode.Conflict);
+            }
+
+            return _registro;
+        }
+
+        // http://192.168.0.13:2412/api/equipos/{ideliminado} HTTP/DELETE
+        public IHttpActionResult DeleteEquipo(string id)
+        {
+            _dbContexto.Configuration.ProxyCreationEnabled = true;
+            IHttpActionResult resultado;
+            Equipo existeEquipo = _dbContexto.Equipos.
+                FirstOrDefault(_equipo => _equipo.Nombre.ToLower() == id.ToLower());
+            if (existeEquipo != null)
+            {
+                // _dbContexto.Entry<Equipo>(existeEquipo).State = System.Data.Entity.EntityState.Deleted;
+                _dbContexto.Equipos.Remove(existeEquipo);
+                _dbContexto.SaveChanges();
+                resultado = new Models.EquipoEliminadoResultado { Estado = true };
+            }
+            else
+            {
+                resultado = NotFound();
+            }
+
+            return resultado;
         }
 
         #endregion
