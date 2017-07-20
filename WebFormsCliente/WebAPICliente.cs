@@ -13,7 +13,7 @@ namespace WebFormsCliente
     {
        private HttpMessageHandler manejador;
         private string URI = "api/equipos";
-        private string DireccionBase = "http://192.168.0.13:2412/";
+        private string DireccionBase = "http://192.168.0.6:2412/";
 
         public WebAPICliente()
         {
@@ -87,8 +87,9 @@ namespace WebFormsCliente
                     clienteHTTP.BaseAddress = new Uri(DireccionBase);
                     clienteHTTP.DefaultRequestHeaders.Accept.Clear();
                     clienteHTTP.DefaultRequestHeaders.Accept.Add(
-                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                    var respuestaHTTP = await clienteHTTP.PutAsJsonAsync<Equipo>(URI, actualizado);
+                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("text/xmlequipo"));
+                    var respuestaHTTP = await clienteHTTP.PutAsync<Equipo>(URI, actualizado, 
+                        new XMLFormateador());
                     
                     return respuestaHTTP.IsSuccessStatusCode;
             }

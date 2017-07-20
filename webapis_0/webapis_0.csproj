@@ -144,7 +144,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63232</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://192.168.0.13:2412/</IISUrl>
+          <IISUrl>http://192.168.0.6:2412/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

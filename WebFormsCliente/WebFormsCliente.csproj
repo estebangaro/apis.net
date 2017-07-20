@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Views\Eliminar equipo.aspx" />
     <Content Include="Views\Principal.aspx" />
     <Content Include="Views\RegistraEquipo.aspx" />
     <Content Include="Web.config" />
@@ -96,6 +97,13 @@
     <Compile Include="Models\PipeMediaTypeFormatter.cs" />
     <Compile Include="Models\XMLFormateador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Eliminar equipo.aspx.cs">
+      <DependentUpon>Eliminar equipo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Eliminar equipo.aspx.designer.cs">
+      <DependentUpon>Eliminar equipo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
