@@ -13,7 +13,7 @@ namespace WebFormsCliente
     {
        private HttpMessageHandler manejador;
         private string URI = "api/equipos";
-        private string DireccionBase = "http://192.168.0.13:2412/";
+        private string DireccionBase = "http://192.168.0.6:2412/";
 
         public WebAPICliente()
         {
@@ -35,13 +35,15 @@ namespace WebFormsCliente
                 clienteHTTP.BaseAddress = new Uri(DireccionBase);
                 clienteHTTP.DefaultRequestHeaders.Accept.Clear();
                 clienteHTTP.DefaultRequestHeaders.Accept.Add(
-                    new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                    new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("text/xmlequipo"));
 
                 try
                 {
                     respuesta = await clienteHTTP.GetAsync(URI);
                     respuesta.EnsureSuccessStatusCode();
-                    equipos = await respuesta.Content.ReadAsAsync<List<Equipo>>();
+                    equipos = await respuesta.Content.ReadAsAsync<List<Equipo>>(new List<MediaTypeFormatter> {
+                        new XMLFormateador()
+                    });
                 }
                 catch
                 {
@@ -62,11 +64,11 @@ namespace WebFormsCliente
                     clienteHTTP.BaseAddress = new Uri(DireccionBase);
                     clienteHTTP.DefaultRequestHeaders.Accept.Clear();
                     clienteHTTP.DefaultRequestHeaders.Accept.Add(
-                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("text/pipe"));
-                    var respuestaHTTP = await clienteHTTP.PostAsync(URI, nuevo, new PipeMediaTypeFormatter());
+                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("text/xmlequipo"));
+                    var respuestaHTTP = await clienteHTTP.PostAsync(URI, nuevo, new XMLFormateador());
                     respuestaHTTP.EnsureSuccessStatusCode();
                     equipo = await respuestaHTTP.Content.ReadAsAsync<Equipo>(new List<MediaTypeFormatter> {
-                        new PipeMediaTypeFormatter()
+                        new XMLFormateador()
                     });
                 }
                 catch(Exception ex)
@@ -76,6 +78,39 @@ namespace WebFormsCliente
             }
             return equipo;
         }
+
+        public async Task<bool> PutEquipoAsync(Equipo actualizado)
+        {
+            using (HttpClient clienteHTTP = new HttpClient(manejador))
+            {
+                
+                    clienteHTTP.BaseAddress = new Uri(DireccionBase);
+                    clienteHTTP.DefaultRequestHeaders.Accept.Clear();
+                    clienteHTTP.DefaultRequestHeaders.Accept.Add(
+                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("text/xmlequipo"));
+                    var respuestaHTTP = await clienteHTTP.PutAsync<Equipo>(URI, actualizado, 
+                        new XMLFormateador());
+                    
+                    return respuestaHTTP.IsSuccessStatusCode;
+            }
+            
+        }
+
+        public async Task<bool> DeleteEquipoAsync(string nombreEquipo)
+        {
+            HttpResponseMessage resultado;
+
+            using (HttpClient clienteHTTP = new HttpClient(manejador))
+            {
+                clienteHTTP.BaseAddress = new Uri(DireccionBase);
+                clienteHTTP.DefaultRequestHeaders.Accept.Clear();
+                clienteHTTP.DefaultRequestHeaders.Accept.Add(
+                    new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                resultado = await clienteHTTP.DeleteAsync($"{URI}/{nombreEquipo}");
+                return resultado.IsSuccessStatusCode;
+            }
+        }
+
 
     }
 }

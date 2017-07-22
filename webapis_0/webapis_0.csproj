@@ -110,8 +110,10 @@
     <Compile Include="Models\Entity Framework CF\Linea_Factura.cs" />
     <Compile Include="Models\Entity Framework CF\Proveedor.cs" />
     <Compile Include="Models\Entity Framework CF\webapis_contexto.cs" />
+    <Compile Include="Models\EquipoEliminadoResultado.cs" />
     <Compile Include="Models\Inicializadores EF\InicializadorDbContext.cs" />
     <Compile Include="Models\PipeMediaTypeFormatter.cs" />
+    <Compile Include="Models\XMLFormateador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Restricciones Personalizadas\DominioEmailRestriccion.cs" />
   </ItemGroup>
@@ -142,7 +144,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63232</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://192.168.0.13:2412/</IISUrl>
+          <IISUrl>http://192.168.0.6:2412/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

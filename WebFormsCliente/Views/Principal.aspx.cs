@@ -37,7 +37,10 @@ namespace WebFormsCliente.Views
 
         protected void btn_RegistrarEquipo_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Views/RegistraEquipo.aspx");
+            if(((Control)sender).ID != "btn_EliminarEquipo")
+                Response.Redirect("/Views/RegistraEquipo.aspx");
+            else
+                Response.Redirect("/Views/Eliminar Equipo.aspx");
         }
     }
 }

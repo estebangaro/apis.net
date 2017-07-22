@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WebFormsCliente
 {
@@ -8,5 +9,6 @@ namespace WebFormsCliente
         public DateTime Fundacion { get; set; }
         public short CampeonatosLiga { get; set; }
         public string Apodo { get; set; }
+        public ICollection<Jugador> Jugadores { get; set; }
     }
 }

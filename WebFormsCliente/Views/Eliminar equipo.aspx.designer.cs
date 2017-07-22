@@ -10,7 +10,7 @@
 namespace WebFormsCliente.Views {
     
     
-    public partial class Principal {
+    public partial class Eliminar_equipo {
         
         /// <summary>
         /// Control form1.
@@ -22,39 +22,21 @@ namespace WebFormsCliente.Views {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control btn_GetEquiposAsync.
+        /// Control txbEquipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_GetEquiposAsync;
+        protected global::System.Web.UI.WebControls.TextBox txbEquipo;
         
         /// <summary>
-        /// Control btn_RegistrarEquipo.
+        /// Control resultadoEliminacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_RegistrarEquipo;
-        
-        /// <summary>
-        /// Control btn_EliminarEquipo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_EliminarEquipo;
-        
-        /// <summary>
-        /// Control marcadoListaEqipos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl marcadoListaEqipos;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl resultadoEliminacion;
     }
 }

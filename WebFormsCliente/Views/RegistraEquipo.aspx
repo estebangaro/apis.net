@@ -38,6 +38,7 @@
         </div>
         <div id="registradoContenedor" runat="server"></div>
         <asp:Button runat="server" ID="btnPostEquipo" Text="Registrar" OnClick="btnPostEquipo_Click"/>
+        <asp:Button runat="server" ID="btnActualizarEquipo" Text="Actualizar" OnClick="btnUpdateEquipo_Click"/>
     </form>
 </body>
 </html>
