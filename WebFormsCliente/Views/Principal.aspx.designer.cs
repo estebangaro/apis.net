@@ -31,6 +31,15 @@ namespace WebFormsCliente.Views {
         protected global::System.Web.UI.WebControls.Button btn_GetEquiposAsync;
         
         /// <summary>
+        /// Control btn_ObtenJugadores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_ObtenJugadores;
+        
+        /// <summary>
         /// Control btn_RegistrarEquipo.
         /// </summary>
         /// <remarks>
@@ -56,5 +65,14 @@ namespace WebFormsCliente.Views {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl marcadoListaEqipos;
+        
+        /// <summary>
+        /// Control maracdoListaJugadores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl maracdoListaJugadores;
     }
 }

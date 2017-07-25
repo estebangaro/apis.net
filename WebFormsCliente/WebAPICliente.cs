@@ -13,7 +13,7 @@ namespace WebFormsCliente
     {
        private HttpMessageHandler manejador;
         private string URI = "api/equipos";
-        private string DireccionBase = "http://192.168.0.6:2412/";
+        private string DireccionBase = "http://192.168.0.3:2412/";
 
         public WebAPICliente()
         {
@@ -111,6 +111,32 @@ namespace WebFormsCliente
             }
         }
 
+        public async Task<List<Jugador>> ObtenerJugadoresAsync()
+        {
+            List<Jugador> jugadores = null;
+            using(HttpClient clienteHTTP = new HttpClient(manejador))
+            {
+                // Consfiguración de componente (cliente HTTP)
+                clienteHTTP.BaseAddress = new Uri(DireccionBase);
+                clienteHTTP.DefaultRequestHeaders.Accept.Clear();
+                clienteHTTP.DefaultRequestHeaders.Accept.Add(
+                    new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                // Configuración de mensaje solicitud
+                HttpMethod verboHTTP = new HttpMethod("GETJUGADORES");
+                //HttpRequestMessage solicitudHTTP = new HttpRequestMessage();
+                //solicitudHTTP.Method = verboHTTP;
+                //solicitudHTTP.RequestUri = new Uri(URI);
+                HttpRequestMessage solicitudHTTP = new HttpRequestMessage(verboHTTP, URI);
+                Task<HttpResponseMessage> respuestaTarea = clienteHTTP.SendAsync(solicitudHTTP,
+                    HttpCompletionOption.ResponseContentRead);
+                // Realizar trabajo independiente de la respuesta.
+                HttpResponseMessage respuestaHTTp = await respuestaTarea;
+                if (respuestaHTTp.IsSuccessStatusCode)
+                    jugadores = await respuestaHTTp.Content.ReadAsAsync<List<Jugador>>();
+            }
+
+            return jugadores;
+        }
 
     }
 }

@@ -144,3 +144,4 @@ C:\Users\esteb\Documents\GitHub\apis.net\webapis_0\bin\es\System.Web.Http.resour
 C:\Users\esteb\Documents\GitHub\apis.net\webapis_0\bin\es\System.Web.Http.WebHost.resources.dll
 C:\Users\esteb\Documents\GitHub\apis.net\webapis_0\obj\Debug\webapis_0.dll
 C:\Users\esteb\Documents\GitHub\apis.net\webapis_0\obj\Debug\webapis_0.pdb
+C:\Users\esteb\Documents\GitHub\apis.net\webapis_0\obj\Debug\webapis_0.csprojResolveAssemblyReference.cache
