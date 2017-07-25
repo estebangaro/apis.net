@@ -98,6 +98,16 @@ namespace webapis_0.Controllers
             return resultado;
         }
 
+        // http://192.168.0.3:2412/api/equipos [HTTP/GETJUGADORES]
+        [AcceptVerbs("GETJUGADORES")]
+        public List<Jugador> ObtenerJugadores()
+        {
+            _dbContexto.Configuration.LazyLoadingEnabled = false;
+            List<Jugador> jugadores = _dbContexto.Jugadores.ToList();
+
+            return jugadores;
+        }
+
         #endregion
     }
 }

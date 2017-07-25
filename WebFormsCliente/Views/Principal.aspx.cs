@@ -35,6 +35,23 @@ namespace WebFormsCliente.Views
                     "¡Ha fallado el consumo del servicio!</p>";
         }
 
+        protected async void btn_GetJugadoresAsync_Click(object sender, EventArgs e)
+        {
+            WebAPICliente cliemteWebAPI = new WebAPICliente();
+
+            List<Jugador> jugadores = await cliemteWebAPI.ObtenerJugadoresAsync();
+            if (jugadores.Count > 0)
+            {
+                XElement listaJugadores = new XElement("ul",
+                        jugadores.Select(jugador => new XElement("li", jugador.Nombre))
+                    );
+                maracdoListaJugadores.InnerHtml = listaJugadores.ToString();
+            }
+            else
+                maracdoListaJugadores.InnerHtml = "<p style=\"color:red;font-size:1.5em;\">" +
+                    "¡Ha fallado el consumo del servicio!</p>";
+        }
+
         protected void btn_RegistrarEquipo_Click(object sender, EventArgs e)
         {
             if(((Control)sender).ID != "btn_EliminarEquipo")

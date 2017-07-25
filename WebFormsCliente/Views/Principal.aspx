@@ -14,12 +14,16 @@
             <asp:Button runat="server" ID="btn_GetEquiposAsync" Text="Obtener Lista Equipos" OnClick="btn_GetEquiposAsync_Click"/>
         </div>        
         <div>
+            <asp:Button runat="server" ID="btn_ObtenJugadores" Text="Obtener Lista Jugadores" OnClick="btn_GetJugadoresAsync_Click"/>
+        </div> 
+        <div>
             <asp:Button runat="server" ID="btn_RegistrarEquipo" Text="Registrar / Actualizar equipo" OnClick="btn_RegistrarEquipo_Click"/>
         </div>
         <div>
             <asp:Button runat="server" ID="btn_EliminarEquipo" Text="Eliminar equipo" OnClick="btn_RegistrarEquipo_Click"/>
         </div>
         <div id="marcadoListaEqipos" runat="server"></div>
+        <div id="maracdoListaJugadores" runat="server"></div>
     </form>
 </body>
 </html>
