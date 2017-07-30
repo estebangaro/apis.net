@@ -88,7 +88,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="clientejs.html" />
     <Content Include="Global.asax" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Imagenes\fondo.jpg" />
+    <Content Include="Scripts\equipo.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +127,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
