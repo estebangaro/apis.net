@@ -12,6 +12,7 @@ namespace webapis_0
         public static void Register(HttpConfiguration config)
         {
             // Configuración y servicios de API web
+            config.EnableCors();
             DefaultInlineConstraintResolver _constarintResolver = new DefaultInlineConstraintResolver();
             _constarintResolver.ConstraintMap.Add("restriccionDominio",
                 typeof(Restricciones_Personalizadas.DominioEmailRestriccion));

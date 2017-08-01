@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cliente JS</title>
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/equipo.js"></script>
+    <style>
+        .Titulo{
+            width:100%;
+            font-size:1.5em;
+            text-align:center;
+            color:white;
+        }
+        .FormEquipo{
+            width:80%;
+            margin: 0 auto;
+            border-radius: 10px;
+            background-color: rgba(0,0,255,0.4);
+        }
+            .FormEquipo > .FilaEntrada{
+                overflow:hidden;
+                padding: 0.3em 0;
+            }
+                .FormEquipo > .FilaEntrada > span{
+                    color: white;
+                    display:inline-block;
+                    width: 30%;
+                    text-align: right;
+                    float: left;
+                }
+                .FormEquipo > .FilaEntrada > input {
+                    width: 40%;
+                    float:right;
+                    border-radius: 10px;
+                    border-color: green;
+                }
+        .Boton{
+            padding: 0.3em;
+            background-color: red;
+            color:white;
+            cursor:pointer;
+        }
+        .FormEquipo > p:last-child {
+            text-align:center;
+        } 
+            body {
+                background-image: url('Imagenes/fondo.jpg');
+            }
+    </style>
+</head>
+<body>
+    <div class="Titulo">Favor de proporcionar la información solicitada</div>
+    <div class="FormEquipo">
+        <p class="FilaEntrada">
+            <span>Nombre</span>
+            <input type="text" id="Nombre" name="Nombre"/>
+        </p>
+        <p class="FilaEntrada">
+            <span>Fundaci&oacute;n</span>
+            <input type="text" id="Fundacion" name="Fundacion" />
+        </p>
+        <p class="FilaEntrada">
+            <span>Campeonatos</span>
+            <input type="text" id="Campeonatos" name="Campeonatos" />
+        </p>
+        <p class="FilaEntrada">
+            <span>Apodo</span>
+            <input type="text" id="Apodo" name="Apodo" />
+        </p>
+        <p>
+            <button class="Boton" id="btnRegistrar">Registrar Equipo</button>
+        </p>
+    </div>
+</body>
+</html>

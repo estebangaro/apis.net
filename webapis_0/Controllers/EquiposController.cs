@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using webapis_0.Models.Entity_Framework_CF;
 
 namespace webapis_0.Controllers
@@ -38,6 +39,7 @@ namespace webapis_0.Controllers
             return _equipoConsulta;
         }
 
+        [EnableCors(origins: "http://localhost:52909", headers:"*", methods:"POST")]
         // http://192.168.0.13:2412/api/equipos/ POST
         public HttpResponseMessage PostEquipo(Equipo nuevo)
         {
