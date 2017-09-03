@@ -145,3 +145,6 @@ C:\Users\esteb\Documents\GitHub\apis.net\webapis_0\bin\es\System.Web.Http.WebHos
 C:\Users\esteb\Documents\GitHub\apis.net\webapis_0\obj\Debug\webapis_0.dll
 C:\Users\esteb\Documents\GitHub\apis.net\webapis_0\obj\Debug\webapis_0.pdb
 C:\Users\esteb\Documents\GitHub\apis.net\webapis_0\obj\Debug\webapis_0.csprojResolveAssemblyReference.cache
+C:\Users\esteb\Documents\GitHub\apis.net\webapis_0\bin\System.Web.Cors.dll
+C:\Users\esteb\Documents\GitHub\apis.net\webapis_0\bin\System.Web.Http.Cors.dll
+C:\Users\esteb\Documents\GitHub\apis.net\webapis_0\bin\System.Web.Http.Cors.xml

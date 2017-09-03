@@ -3,20 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using webapis_0.Models.Entity_Framework_CF;
 
 namespace webapis_0.Controllers
 {
     public class EquiposController : ApiController
     {
+
+        #region Campos
+
         private Models.Entity_Framework_CF.webapis_contexto _dbContexto;
+
+        #endregion
+
+        #region Métodos
+
+        #region Constructores
 
         public EquiposController()
         {
-            _dbContexto = new Models.Entity_Framework_CF.webapis_contexto();
-            _dbContexto.Configuration.ProxyCreationEnabled = false;
+            DbContexto = new Models.Entity_Framework_CF.webapis_contexto();
+            DbContexto.Configuration.ProxyCreationEnabled = false;
         }
+
+        #endregion
+
+        #region Acciones
 
         #region Modelo Enrutamiento por Convención de Nombres de Verbos HTTP
 
@@ -38,6 +53,7 @@ namespace webapis_0.Controllers
             return _equipoConsulta;
         }
 
+        [EnableCors(origins: "http://localhost:52909", headers: "*", methods: "POST")]
         // http://192.168.0.13:2412/api/equipos/ POST
         public HttpResponseMessage PostEquipo(Equipo nuevo)
         {
@@ -107,6 +123,65 @@ namespace webapis_0.Controllers
 
             return jugadores;
         }
+
+        #endregion
+
+        #region Modelo Enrutamiento por Atributos de Enrutamiento
+
+        [Route("jugadores/mayor/{nombre}")]
+        [AcceptVerbs("OBTENJUGADORESNOMBRE")]
+        // http://localhost:56288/jugadores/mayor/{nombre}
+        public HttpResponseMessage JugadoresNombreComo(string nombre)
+        {
+            HttpResponseMessage resultado;
+            IEnumerable<Jugador> jugadores =
+                DbContexto.Jugadores.Where(jugador => jugador.Nombre.Contains(nombre));
+            if(jugadores != null && jugadores.Count() > 0)
+            {
+                resultado = new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = new ObjectContent<List<Jugador>>(
+                        jugadores.ToList(),
+                        new JsonMediaTypeFormatter()
+                    )
+                };
+            }
+            else
+            {
+                resultado = new HttpResponseMessage { StatusCode = HttpStatusCode.NotFound };
+            }
+
+            return resultado;
+        } 
+
+        #endregion
+
+        #endregion
+
+        #endregion
+
+        #region Propiedades
+
+        public Models.Entity_Framework_CF.webapis_contexto DbContexto
+        {
+            get
+            {
+                if (_dbContexto != null)
+                    return _dbContexto;
+                throw new Exception("No se ha inicializado el contexto de datos");
+            }
+
+            set
+            {
+                _dbContexto = value is Models.Entity_Framework_CF.webapis_contexto 
+                    ? value : null;
+            }
+        }
+
+        #endregion
+
+        #region Eventos
 
         #endregion
     }

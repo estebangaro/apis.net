@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cliente Signal Chat Service</title>
+    <style>
+        .center{
+            position:absolute;
+            top:25%;
+            left:25%;
+            width: 50%;
+            height: 50%;
+            border: solid blue 1.2px;
+            border-radius: 10px;
+        }
+        .encabezado > h2{
+            text-align:center;
+        }
+        .estatusConexion{
+            display:inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: red;
+            font-size: 0.2em;
+        }
+        .center > .encabezado, .center > .mensajes {
+            box-sizing: border-box;
+            width: 90%;
+            margin: 0 auto;
+        }
+        .center > .encabezado{
+            height: 25%;
+        }
+        .center > .mensajes{
+            border: solid 1px blue;
+            padding: 0.5em;
+            height: 60%;
+            overflow: scroll;
+        }
+        .encabezado > p {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        #txtMsj, .encabezado span, #btnEnviar{
+            box-sizing: border-box;
+        }
+        #txtMsj {
+            width: 70%;
+        }
+        .encabezado > p > span {
+            width: 10%;
+        }
+        #btnEnviar{
+            width: 15%;
+        }
+        .azul{
+            color:cornflowerblue;
+        }
+        .rojo{
+            color: chartreuse;
+        }
+    </style>
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+    <script src="../Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="../Scripts/ChatCliente/PersistentConnectionjs.js"></script>
+</head>
+<body>
+    <div class="center">
+        <div class="encabezado">
+            <h2>Sala-Chat SignalR Service <span class="estatusConexion"></span></h2>
+            <p>
+                <span>Mensaje:</span>
+                <input type="text" id="txtMsj" name="txtMsj" />
+                <input type="button" id="btnEnviar" name="btnEnviar" value="Enviar" />
+            </p>
+        </div>
+        <div class="mensajes">
+
+        </div>
+    </div>
+</body>
+</html>
