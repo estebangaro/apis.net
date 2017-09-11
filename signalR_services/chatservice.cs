@@ -13,7 +13,7 @@ namespace signalR_services
         #region Campos
 
         // To save clients count in order to raise OnConnected event.
-        private int clientsCount = 0;
+        private static int clientsCount = 0;
 
         #endregion
 
@@ -22,6 +22,8 @@ namespace signalR_services
 
         protected override Task OnConnected(IRequest request, string connectionId)
         {
+            string[] groupsNames = { "netDevelopers", "javaDevelopers"};
+            Groups.Add(connectionId, groupsNames[new Random().Next(groupsNames.Length)]);
             Interlocked.Increment(ref clientsCount);
             return base.OnConnected(request, connectionId);
         }
@@ -37,7 +39,8 @@ namespace signalR_services
             return base.OnReconnected(request, connectionId);
         }
 
-        protected override IList<string> OnRejoiningGroups(IRequest request, IList<string> groups, string connectionId)
+        protected override IList<string> OnRejoiningGroups(IRequest request, 
+            IList<string> groups, string connectionId)
         {
             return base.OnRejoiningGroups(request, groups, connectionId);
         }
