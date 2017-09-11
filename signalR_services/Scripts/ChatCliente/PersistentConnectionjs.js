@@ -21,9 +21,11 @@ function setConnection() {
             $('.estatusConexion').css('background-color', 'green');
             $('#btnEnviar').click(function () {
                 $('<p class="azul"></p>').html('Yo:' + $('#txtMsj').val()).appendTo($('.mensajes'));
+                $('.mensajes').scrollTop($('.mensajes').prop("scrollHeight"));
                 _persistenConnectionjs_Signal.send(
                     $('#txtMsj').val()
                 );
+                $('#txtMsj').val('');
             });
         })
         .fail(function () {

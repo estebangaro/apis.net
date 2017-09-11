@@ -51,3 +51,6 @@ C:\Users\esteb\Documents\GitHub\apis.net\signalR_services\bin\es\Microsoft.Owin.
 C:\Users\esteb\Documents\GitHub\apis.net\signalR_services\obj\Debug\signalR_services.csprojResolveAssemblyReference.cache
 C:\Users\esteb\Documents\GitHub\apis.net\signalR_services\obj\Debug\signalR_services.dll
 C:\Users\esteb\Documents\GitHub\apis.net\signalR_services\obj\Debug\signalR_services.pdb
+C:\Users\esteb\Documents\GitHub\apis.net\signalR_services\bin\Microsoft.Owin.Cors.dll
+C:\Users\esteb\Documents\GitHub\apis.net\signalR_services\bin\System.Web.Cors.dll
+C:\Users\esteb\Documents\GitHub\apis.net\signalR_services\bin\Microsoft.Owin.Cors.xml
